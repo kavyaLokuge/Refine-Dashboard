@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  Deploy:
+    name: Deploy to lightsail
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/bitnami/projects/Refine-Dashboard
+            git checkout master
+            git fetch origin master
+            git pull origin master
+            cd client
+            npm install
+            npm run build
+            cd ../server
+            npm install
+            npm start
