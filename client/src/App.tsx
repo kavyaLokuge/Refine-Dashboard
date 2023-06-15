@@ -61,7 +61,7 @@ function App() {
       console.log('credencial', profileObj)
 
       if( profileObj ){                                                   // Si existen las credenciales
-        const response = await fetch('http://localhost:8080/api/v1/users',{   // Guardamos los datos en mongo db
+        const response = await fetch('/api/v1/users',{   // Guardamos los datos en mongo db
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -127,7 +127,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider("http://localhost:8080/api/v1")} //local host 8080
+          dataProvider={dataProvider("/api/v1")} //local host 8080
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
