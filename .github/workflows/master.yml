@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: ["master"]
+    branches: ["dev"]
 
 jobs:
   Deploy:
@@ -18,12 +18,9 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /home/bitnami/projects/Refine-Dashboard
-            git checkout master
-            git fetch origin master
-            git pull origin master
-            cd client
-            sudo npm install
-            sudo npm run build
+            git checkout dev
+            git fetch origin dev
+            git pull origin dev
             cd ../server
             sudo npm install
-            sudo npx nodemon index.js
+            sudo npx nodemon index.js > /dev/null 2>&1 &
