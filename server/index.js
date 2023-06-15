@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
+const staticFolderPath = path.resolve('../client/build');
 
 dotenv.config();
 
@@ -22,7 +22,8 @@ app.use(cors());
 
 app.use(express.json({ limit: '50mb' }));
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'build'), { index: [ 'index.html'] }));
+app.use(express.static(staticFolderPath));
+// app.use(express.static(path.join(__dirname, '../client/build'), { index: [ 'index.html'] }));
 // app.use('/api/*', apiProxy);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/properties', propertyRouter);
