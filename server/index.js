@@ -18,12 +18,12 @@ const app = express();
 
 app.use(cors());
 
-const apiProxy = createProxyMiddleware('api', { target: 'http://localhost:3000' });
+// const apiProxy = createProxyMiddleware('api', { target: 'http://localhost:3000' });
 
 app.use(express.json({ limit: '50mb' }));
 
-app.use(express.static(path.join(__dirname, '../client/build/index.html')));
-app.use('/api/*', apiProxy);
+app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use('/api/*', apiProxy);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/properties', propertyRouter);
 
