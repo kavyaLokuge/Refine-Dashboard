@@ -26,4 +26,4 @@ jobs:
             npm run build
             cd ../server
             npm install
-            npm start
+            npx nodemon index.js
