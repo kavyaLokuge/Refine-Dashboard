@@ -22,5 +22,5 @@ jobs:
             git fetch origin dev
             git pull origin dev
             cd server
-            sudo npm install
-            sudo npx nodemon index.js &
+            npm install
+            forever start index.js
