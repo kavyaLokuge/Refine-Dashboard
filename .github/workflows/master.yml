@@ -21,6 +21,6 @@ jobs:
             git checkout dev
             git fetch origin dev
             git pull origin dev
-            cd ../server
+            cd ./server
             sudo npm install
             sudo npx nodemon index.js > /dev/null 2>&1 &
